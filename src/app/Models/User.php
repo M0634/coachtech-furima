@@ -6,14 +6,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
@@ -21,11 +20,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'postal_code',
+        'address',
+        'building',
+        'image',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
      * @var array<int, string>
      */
     protected $hidden = [
@@ -34,11 +35,30 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * 型キャスト設定
      *
      * @var array<string, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setPasswordAttribute($value)
+    {
+    if (!empty($value) && !preg_match('/^\$2y\$/', $value)) {
+        $this->attributes['password'] = Hash::make($value);
+    } else {
+        $this->attributes['password'] = $value;
+    }
+    }
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+
 }

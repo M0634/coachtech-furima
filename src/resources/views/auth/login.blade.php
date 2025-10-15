@@ -1,21 +1,43 @@
 @extends('layouts.app')
 
-@section('title', '商品一覧（トップページ）')
+@section('title', 'ログイン')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+@endpush
 
 @section('content')
-<div class="container">
-    <h1>商品一覧</h1>
+<div class="login-container">
+    <h2 class="login-title">ログイン</h2>
 
-    {{-- 商品一覧をここに表示 --}}
-    <div class="items">
-        {{-- 例: foreachで商品を回す --}}
-        @foreach($items ?? [] as $item)
-            <div class="item-card">
-                <h2>{{ $item->name }}</h2>
-                <p>{{ $item->price }}円</p>
-                <a href="{{ url('/item/' . $item->id) }}">詳細を見る</a>
-            </div>
-        @endforeach
-    </div>
+    <form method="POST" action="{{ route('login') }}" class="login-form">
+        @csrf
+
+        {{-- メールアドレス --}}
+        <div class="form-group">
+            <label for="email">メールアドレス</label>
+            <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus>
+            @error('email')
+                <span class="error">{{ $message }}</span>
+            @enderror
+        </div>
+
+        {{-- パスワード --}}
+        <div class="form-group">
+            <label for="password">パスワード</label>
+            <input type="password" name="password" id="password" required>
+            @error('password')
+                <span class="error">{{ $message }}</span>
+            @enderror
+        </div>
+
+        {{-- ログインボタン --}}
+        <button type="submit" class="login-btn">ログインする</button>
+    </form>
+
+    {{-- 会員登録リンク --}}
+    <p class="register-link">
+        <a href="{{ route('register') }}">会員登録はこちら</a>
+    </p>
 </div>
 @endsection

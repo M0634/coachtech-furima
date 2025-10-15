@@ -1,0 +1,45 @@
+.verify-container {
+    text-align: center;
+    padding: 100px 20px;
+    font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
+}
+
+.verify-message {
+    font-size: 16px;
+    margin-bottom: 40px;
+    line-height: 1.8;
+    font-weight: 600;
+}
+
+.verify-button-area {
+    margin-bottom: 30px;
+}
+
+.verify-button {
+    display: inline-block;
+    padding: 10px 40px;
+    background-color: #d9d9d9;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.verify-button:hover {
+    background-color: #bfbfbf;
+}
+
+.resend-link {
+    background: none;
+    border: none;
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.resend-link:hover {
+    color: #0056b3;
+}

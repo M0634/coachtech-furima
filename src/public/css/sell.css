@@ -1,0 +1,160 @@
+/* ==============================
+   出品ページ全体
+============================== */
+.sell-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.sell-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+/* ==============================
+   セクション共通
+============================== */
+.form-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* ==============================
+   画像アップロード
+============================== */
+.image-upload-box {
+    border: 1px dashed #ccc;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.image-select-btn {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #ff6666;
+    color: #ff6666;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.image-select-btn:hover {
+    background: #ff6666;
+    color: #fff;
+}
+
+/* ==============================
+   カテゴリータグ
+============================== */
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    border: 1px solid #ff8888;
+    color: #ff8888;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tag:hover {
+    background: #ff8888;
+    color: #fff;
+}
+
+/* ==============================
+   入力フォーム
+============================== */
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.form-select {
+    appearance: none;
+    background: #fff url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 40 L70 100 L130 40' stroke='%23999' stroke-width='15' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 10px center/12px;
+}
+
+.form-textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.price-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.price-input span {
+    font-weight: bold;
+}
+
+/* ==============================
+   出品ボタン
+============================== */
+.submit-box {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.submit-btn {
+    display: inline-block;
+    background: #ff6b6b;
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 60px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #ff4a4a;
+}
+
+/* ==============================
+   レスポンシブ対応
+============================== */
+@media (max-width: 600px) {
+    .sell-container {
+        padding: 10px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 14px 0;
+    }
+}

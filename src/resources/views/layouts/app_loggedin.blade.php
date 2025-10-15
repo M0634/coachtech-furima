@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'COACHTECH')</title>
+
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    @stack('styles')
 </head>
 <body>
     {{-- ヘッダー --}}
@@ -17,10 +19,27 @@
         </div>
 
         <div class="header-right">
-            <a href="#" class="nav-link">ログアウト</a>
-            <a href="#" class="nav-link">マイページ</a>
-            <a href="#" class="nav-link">出品</a>
-                </div>
+            {{-- ▼ ログイン状態で表示 --}}
+            @auth
+                <a href="{{ route('logout') }}" class="nav-link"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    ログアウト
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
+                <a href="{{ route('mypage') }}" class="nav-link">マイページ</a>
+                <a href="{{ route('sell') }}" class="nav-link">出品</a>
+            @endauth
+
+            {{-- ▼ ログインしていない場合 --}}
+            @guest
+                <a href="{{ route('login') }}" class="nav-link">ログイン</a>
+                <a href="{{ route('register') }}" class="nav-link">マイページ</a>
+                <a href="{{ route('login') }}" class="nav-link">出品</a>
+            @endguest
+        </div>
     </header>
 
     {{-- メインコンテンツ --}}

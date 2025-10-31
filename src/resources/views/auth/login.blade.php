@@ -3,7 +3,7 @@
 @section('title', 'ログイン')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
 @endpush
 
 @section('content')
@@ -16,7 +16,7 @@
         {{-- メールアドレス --}}
         <div class="form-group">
             <label for="email">メールアドレス</label>
-            <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus>
+            <input type="text" name="email" id="email" value="{{ old('email') }}">
             @error('email')
                 <span class="error">{{ $message }}</span>
             @enderror
@@ -25,7 +25,7 @@
         {{-- パスワード --}}
         <div class="form-group">
             <label for="password">パスワード</label>
-            <input type="password" name="password" id="password" required>
+            <input type="password" name="password" id="password">
             @error('password')
                 <span class="error">{{ $message }}</span>
             @enderror

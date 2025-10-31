@@ -126,3 +126,39 @@
 .btn-comment:hover {
     background: #d94b4b;
 }
+
+/* コメント一覧のスクロール表示 */
+.comments {
+    max-height: 100px;        /* 高さは好きに調整OK */
+    overflow-y: auto;         /* 縦方向にスクロール */
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* コメント1件のデザイン */
+.comment {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+.comment-user {
+    font-weight: bold;
+    color: #555;
+}
+
+.comment-body {
+    margin-top: 5px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+

@@ -3,7 +3,7 @@
 @section('title', 'メール認証')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/verify.css') }}">
+<link rel="stylesheet" href="{{ asset('css/auth/verify.css') }}">
 
 <div class="verify-container">
     <p class="verify-message">
@@ -18,10 +18,11 @@
     @endif
 
     <div class="verify-button-area">
-        <a href="#" class="verify-button" onclick="alert('受信したメールのリンクをクリックして認証を完了してください'); return false;">
+        <a href="http://localhost:8025" class="verify-button" target="_blank">
             認証はこちらから
         </a>
     </div>
+
 
     <form method="POST" action="{{ route('verification.send') }}">
         @csrf

@@ -16,7 +16,7 @@ class MypageController extends Controller
         $user = Auth::user();
 
         // タブ指定（デフォルトは「sold」＝出品した商品）
-        $tab = $request->query('tab', 'sold');
+        $page = $request->query('page', 'sell'); // tab → page に変更、デフォルトは sell に
 
         // 出品した商品（itemsテーブル）
         $soldItems = \App\Models\Item::where('user_id', $user->id)->get();
@@ -26,7 +26,7 @@ class MypageController extends Controller
             $query->where('user_id', $user->id);
         })->get();
 
-        return view('mypage.mypage', compact('user', 'tab', 'soldItems', 'purchasedItems'));
+        return view('mypage.mypage', compact('user', 'page', 'soldItems', 'purchasedItems'));
     }
 
 

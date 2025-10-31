@@ -4,12 +4,12 @@
 
 @section('content')
     {{-- register.css を直接ここで読み込む --}}
-    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">
 
     <div class="register-container">
         <h2 class="register-title">会員登録</h2>
 
-        <form action="{{ route('register.post') }}" method="POST" class="register-form">
+        <form action="{{ route('register.post') }}" method="POST" class="register-form" novalidate>
             @csrf
 
             <div class="form-group">
@@ -28,18 +28,26 @@
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="password">パスワード</label>
-                <input type="password" id="password" name="password" required>
-                @error('password')
-                    <p class="error">{{ $message }}</p>
-                @enderror
-            </div>
+            {{-- パスワード --}}
+<div class="form-group">
+    <label for="password">パスワード</label>
+    <input type="password" id="password" name="password">
+    @error('password')
+        <p class="error">{{ $message }}</p>
+    @enderror
+</div>
 
-            <div class="form-group">
-                <label for="password_confirmation">確認用パスワード</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" required>
-            </div>
+{{-- 確認用パスワード --}}
+<div class="form-group">
+    <label for="password_confirmation">確認用パスワード</label>
+    <input type="password" id="password_confirmation" name="password_confirmation">
+    @error('password_confirmation')
+        <p class="error">{{ $message }}</p>
+    @enderror
+</div>
+
+
+
 
             <button type="submit" class="register-btn">登録する</button>
         </form>

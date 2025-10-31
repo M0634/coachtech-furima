@@ -3,7 +3,7 @@
 @section('title', $item->name . ' | 商品詳細')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/item_detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/items/item_detail.css') }}">
 @endpush
 
 @section('content')
@@ -11,12 +11,18 @@
 
     {{-- 左側：商品画像 --}}
     <div class="item-image">
-        @if($item->img_url)
-            <img src="{{ $item->img_url }}" alt="{{ $item->name }}">
+        @php
+            $imageUrl = $item->img_url;
+            $isExternal = preg_match('/^https?:\/\//', $imageUrl);
+        @endphp
+
+        @if($imageUrl)
+            <img src="{{ $isExternal ? $imageUrl : asset($imageUrl) }}" alt="{{ $item->name }}">
         @else
             <div class="no-image">商品画像</div>
         @endif
     </div>
+
 
     {{-- 右側：商品情報 --}}
     <div class="item-info">
@@ -26,7 +32,7 @@
 
         <div class="item-actions">
             <div class="like-comment">
-                <span>⭐ {{ $item->likes_count ?? 0 }}</span>
+                <span>⭐ {{ $item->favorites_count ?? $item->favorites->count() }}</span>
                 <span>💬 {{ $item->comments->count() ?? 0 }}</span>
             </div>
 
@@ -56,13 +62,19 @@
             @endforelse
         </div>
 
+
         {{-- コメントフォーム --}}
         <form action="{{ route('comments.store', $item) }}" method="POST" class="comment-form">
             @csrf
             <label for="content">商品へのコメント</label>
-            <textarea name="content" id="content" rows="3" required></textarea>
+            <textarea name="content" id="content">{{ old('content') }}</textarea>
+            {{-- エラーメッセージ --}}
+            @error('content')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
             <button type="submit" class="btn-comment">コメントを送信する</button>
         </form>
+
     </div>
 </div>
 @endsection

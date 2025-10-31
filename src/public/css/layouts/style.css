@@ -12,6 +12,7 @@ body {
     background-color: #000;
     padding: 10px 20px;
     color: #fff;
+    flex-wrap: wrap; /* 型崩れ防止 */
 }
 
 /* 左側（ロゴ + サイト名） */
@@ -19,24 +20,45 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
 }
 .logo {
     height: 30px;
 }
-
 
 /* 中央（検索ボックス） */
 .header-center {
     flex: 1;
     display: flex;
     justify-content: center;
+    min-width: 200px; /* 型崩れ防止 */
+    margin: 5px 0;
+}
+.search-form {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
 }
 .search-box {
-    width: 400px;
-    max-width: 60%;
+    flex: 1;
     padding: 8px 12px;
-    border-radius: 4px;
     border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+}
+.search-btn {
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-btn i {
+    pointer-events: none;
 }
 
 /* 右側（ナビリンク + 出品ボタン） */
@@ -44,6 +66,8 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
 }
 .nav-link {
     color: white;
@@ -57,10 +81,5 @@ body {
 .nav-link:hover {
     background-color: #fff;
     color: #000;
-    border: none;
-    padding: 6px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
 }
 

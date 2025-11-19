@@ -2,40 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Profile;
+use App\Http\Requests\AddressRequest;
 use App\Models\Item;
 
 class AddressController extends Controller
 {
-    // 編集フォーム表示
     public function edit($item_id)
     {
-        $profile = auth()->user()->profile;
+        $profile = auth()->user()->address ?? null;
         $item = Item::findOrFail($item_id);
 
         return view('purchase.address', compact('profile', 'item'));
     }
 
-    // 更新処理
-    public function update(Request $request, $item_id)
+    public function update(AddressRequest $request, $item_id)
     {
-        $request->validate([
-            'postal_code' => 'required|string|max:10',
-            'address' => 'required|string|max:255',
-            'building' => 'nullable|string|max:255',
-        ]);
+        $user = auth()->user();
 
-        $profile = auth()->user()->profile;
-        $profile->update([
-            'postal_code' => $request->postal_code,
-            'address' => $request->address,
-            'building' => $request->building,
-        ]);
+        $profile = $user->address;
+        if ($profile) {
+            $profile->update($request->validated());
+        } else {
+            $profile = $user->address()->create($request->validated());
+        }
 
-        // ✅ 修正ポイント：ルートパラメータを明示的に渡す
-        return redirect()->route('purchase.show', ['item' => $item_id])
-                         ->with('success', '住所を更新しました。');
+        return redirect()
+            ->route('purchase.show', [
+                'item_id' => $item_id,
+                'type' => $request->input('type', 'item'),
+            ])
+            ->with('success', '住所を更新しました。');
 
     }
 }

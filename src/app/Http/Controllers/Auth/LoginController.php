@@ -41,7 +41,7 @@ class LoginController extends Controller
 
             // ✅ ② 2回目のログイン（前回で first_login_verified=1 に更新済み）
             // → メール認証未済でも必ず /email/verify にリダイレクト
-            if ($user->first_login_verified === 1 && !$user->hasVerifiedEmail()) {
+            if ($user->first_login_verified === 1 && ! $user->hasVerifiedEmail()) {
                 // 2回目のログインで初めてメール認証が必要
                 $user->first_login_verified = 2;
                 $user->save();
@@ -57,6 +57,7 @@ class LoginController extends Controller
 
             // ✅ ④ 認証していないのにログインしようとした場合
             Auth::logout();
+
             return redirect()->route('verification.notice');
         }
 

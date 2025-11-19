@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Item;
 
 class HomeController extends Controller
 {
@@ -35,24 +36,51 @@ class HomeController extends Controller
         // 🔹 検索 + タブ別のデータ取得
         // ===========================================
         if ($tab === 'mylist') {
+            // マイリスト（お気に入り）
             $items = Item::whereHas('favorites', function ($query) {
                 $query->where('user_id', Auth::id());
             })
-            ->when($search, function ($query) use ($search) {
-                $query->where(function ($sub) use ($search) {
-                    $sub->where('name', 'like', "%{$search}%")
-                        ->orWhere('description', 'like', "%{$search}%");
-                });
-            })
-            ->get();
+                ->when($search, function ($query) use ($search) {
+                    $query->where(function ($sub) use ($search) {
+                        $sub->where('name', 'like', "%{$search}%")
+                            ->orWhere('description', 'like', "%{$search}%");
+                    });
+                })
+                ->get();
         } else {
-            $items = Item::when($search, function ($query) use ($search) {
+            // ==========================
+            // 🔹 おすすめタブ
+            // ==========================
+
+            // itemsテーブル（初期登録データ）
+            $seededItems = Item::when($search, function ($query) use ($search) {
+                $query->where(function ($sub) use ($search) {
+                    $sub->where('name', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%");
+                });
+            })->get();
+
+            // productsテーブル（他ユーザー出品商品、自分は除外）
+            $userProducts = Product::when($search, function ($query) use ($search) {
                 $query->where(function ($sub) use ($search) {
                     $sub->where('name', 'like', "%{$search}%")
                         ->orWhere('description', 'like', "%{$search}%");
                 });
             })
-            ->get();
+                ->where('user_id', '!=', Auth::id())
+                ->get()
+                ->map(function ($product) {
+                    return (object) [
+                        'id' => $product->id,
+                        'name' => $product->name,
+                        'img_url' => $product->img_url,
+                        'is_favorite' => false,
+                        'purchases' => collect(),
+                    ];
+                });
+
+            // 両方を結合
+            $items = $seededItems->concat($userProducts);
         }
 
         return view('home.index', compact('tab', 'items', 'search'));

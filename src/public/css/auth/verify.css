@@ -43,3 +43,30 @@
 .resend-link:hover {
     color: #0056b3;
 }
+
+/* ===== 1400px〜1540px 用レスポンシブ ===== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+
+    .verify-container {
+        padding: 140px 40px; /* 上下の余白を広く */
+    }
+
+    .verify-message {
+        font-size: 18px; /* 少し大きくして読みやすく */
+        margin-bottom: 50px;
+    }
+
+    .verify-button {
+        padding: 12px 50px; /* ボタンを少し大きく */
+        font-size: 18px;
+    }
+
+    .verify-button-area {
+        margin-bottom: 40px;
+    }
+
+    .resend-link {
+        font-size: 16px; /* テキストリンクも調整 */
+    }
+}
+

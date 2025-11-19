@@ -6,7 +6,9 @@
     margin: 0 auto;
 }
 
-.item-image img, .no-image {
+/* 画像部分 */
+.item-image img,
+.no-image {
     width: 400px;
     height: 400px;
     background: #eee;
@@ -19,6 +21,7 @@
     object-fit: cover;
 }
 
+/* 情報部分 */
 .item-info {
     flex: 1;
 }
@@ -40,10 +43,12 @@
 }
 
 .item-actions {
-    /* display: flex; */
-    /* align-items: center;
-    justify-content: space-between; */
     margin-top: 15px;
+}
+
+/* いいね・コメント */
+.like-comment {
+    margin-bottom: 2rem;
 }
 
 .like-comment span {
@@ -51,10 +56,7 @@
     font-size: 1.2rem;
 }
 
-.like-comment {
-    margin-bottom: 2rem;
-}
-
+/* 購入ボタン */
 .btn-purchase {
     background: #f25b5b;
     color: #fff;
@@ -68,6 +70,7 @@
     background: #d94b4b;
 }
 
+/* セクションタイトル */
 .section-title {
     font-weight: bold;
     margin-top: 30px;
@@ -76,7 +79,9 @@
     padding-left: 8px;
 }
 
-.item-description, .item-meta {
+/* 詳細情報 */
+.item-description,
+.item-meta {
     line-height: 1.6;
 }
 
@@ -86,58 +91,17 @@
     border-radius: 4px;
 }
 
+/* コメント一覧 */
 .comments {
     margin-top: 10px;
-}
-
-.comment {
-    border-bottom: 1px solid #ddd;
-    padding: 8px 0;
-}
-
-.comment-user {
-    font-weight: bold;
-    color: #555;
-}
-
-.comment-form {
-    margin-top: 20px;
-}
-
-.comment-form textarea {
-    width: 100%;
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    resize: vertical;
-}
-
-.btn-comment {
-    margin-top: 10px;
-    background: #f25b5b;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.btn-comment:hover {
-    background: #d94b4b;
-}
-
-/* コメント一覧のスクロール表示 */
-.comments {
-    max-height: 100px;        /* 高さは好きに調整OK */
-    overflow-y: auto;         /* 縦方向にスクロール */
+    max-height: 100px;
+    overflow-y: auto;
     padding: 10px;
     background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
 }
 
-/* コメント1件のデザイン */
 .comment {
     padding: 8px;
     border-bottom: 1px solid #eee;
@@ -156,9 +120,127 @@
     margin-top: 5px;
 }
 
+/* コメントフォーム */
+.comment-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.comment-form label {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.comment-form .error-message {
+    color: #e74c3c;
+    font-size: 0.875rem;
+}
+
+.comment-form .btn-comment {
+    align-self: flex-start;
+    padding: 8px 16px;
+    background-color: #3490dc;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.comment-form .btn-comment:hover {
+    background-color: #2779bd;
+}
+
+/* エラーメッセージ全般 */
 .error-message {
     color: red;
     font-size: 14px;
     margin-top: 5px;
 }
 
+/* ==============================
+   1400px〜1540px レイアウト最適化
+============================== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+
+    /* --- コンテナの横幅調整 --- */
+    .item-detail-container {
+        max-width: 1200px;        /* 画面が広い時に横幅を少し広げる */
+        padding: 50px 40px;
+        gap: 50px;
+    }
+
+    /* --- 商品画像を少し大きく --- */
+    .item-image img,
+    .no-image {
+        width: 460px;
+        height: 460px;
+        font-size: 1.3rem;
+    }
+
+    /* --- 商品名と価格をバランスよく大きく --- */
+    .item-name {
+        font-size: 2rem;
+    }
+
+    .item-price {
+        font-size: 1.7rem;
+    }
+
+    /* --- いいね・コメント表示調整 --- */
+    .like-comment span {
+        font-size: 1.3rem;
+    }
+
+    /* --- セクションタイトル大きめに --- */
+    .section-title {
+        font-size: 1.15rem;
+        margin-top: 35px;
+        margin-bottom: 12px;
+    }
+
+    /* --- コメント欄の高さを広げる --- */
+    .comments {
+        max-height: 150px;
+        padding: 12px;
+    }
+
+    /* --- コメント部分の文字バランス --- */
+    .comment {
+        padding: 10px;
+    }
+
+    .comment-user {
+        font-size: 1.05rem;
+    }
+
+    .comment-body {
+        font-size: 1rem;
+    }
+
+    /* --- コメントフォームも広めに見やすく --- */
+    .comment-form textarea {
+        min-height: 130px;
+        font-size: 1.05rem;
+    }
+
+    .comment-form .btn-comment {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}

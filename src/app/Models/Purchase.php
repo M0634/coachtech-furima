@@ -9,7 +9,7 @@ class Purchase extends Model
 {
     use HasFactory;
 
-        protected $fillable = [
+    protected $fillable = [
         'user_id',
         'item_id',
         'quantity',
@@ -28,6 +28,11 @@ class Purchase extends Model
     public function item()
     {
         return $this->belongsTo(Item::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 
     public function address()

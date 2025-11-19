@@ -8,8 +8,6 @@ class AddStatusToItemsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up(): void
     {
@@ -24,5 +22,4 @@ class AddStatusToItemsTable extends Migration
             $table->dropColumn('status');
         });
     }
-
 }

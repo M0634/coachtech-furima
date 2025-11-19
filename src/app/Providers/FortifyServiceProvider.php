@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Laravel\Fortify\Fortify;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\ValidationException;
+use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -18,12 +18,12 @@ class FortifyServiceProvider extends ServiceProvider
         // ==========================
         // Fortify ビュー設定
         // ==========================
-        Fortify::loginView(fn() => view('auth.login'));
-        Fortify::registerView(fn() => view('auth.register'));
-        Fortify::requestPasswordResetLinkView(fn() => view('auth.forgot-password'));
-        Fortify::resetPasswordView(fn($request) => view('auth.reset-password', ['request' => $request]));
-        Fortify::verifyEmailView(fn() => view('auth.verify-email'));
-        Fortify::twoFactorChallengeView(fn() => view('auth.two-factor-challenge'));
+        Fortify::loginView(fn () => view('auth.login'));
+        Fortify::registerView(fn () => view('auth.register'));
+        Fortify::requestPasswordResetLinkView(fn () => view('auth.forgot-password'));
+        Fortify::resetPasswordView(fn ($request) => view('auth.reset-password', ['request' => $request]));
+        Fortify::verifyEmailView(fn () => view('auth.verify-email'));
+        Fortify::twoFactorChallengeView(fn () => view('auth.two-factor-challenge'));
 
         // ==========================
         // カスタム認証ロジック（パスワード認証のみ）
@@ -50,7 +50,7 @@ class FortifyServiceProvider extends ServiceProvider
         // ログイン試行制限
         // ==========================
         RateLimiter::for('login', function (Request $request) {
-            return Limit::perMinute(10)->by($request->email . $request->ip());
+            return Limit::perMinute(10)->by($request->email.$request->ip());
         });
 
         RateLimiter::for('two-factor', function (Request $request) {

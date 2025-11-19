@@ -2,30 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Favorite;
 
 class FavoriteController extends Controller
 {
-    // お気に入り登録
-    public function store($item_id)
+    /**
+     * お気に入りトグル（Item専用）
+     */
+    public function toggle(Request $request)
     {
-        Favorite::firstOrCreate([
-            'user_id' => Auth::id(),
-            'item_id' => $item_id,
+        $user = Auth::user();
+        $itemId = $request->input('id');
+
+        // 既にお気に入り登録されているかチェック
+        $favorite = Favorite::where('user_id', $user->id)
+                            ->where('item_id', $itemId)
+                            ->first();
+
+        if ($favorite) {
+            // お気に入り解除
+            $favorite->delete();
+            return response()->json(['status' => 'removed']);
+        }
+
+        // お気に入り追加
+        Favorite::create([
+            'user_id' => $user->id,
+            'item_id' => $itemId,
         ]);
 
-        return back()->with('success', 'お気に入りに追加しました！');
-    }
-
-    // お気に入り解除
-    public function destroy($item_id)
-    {
-        Favorite::where('user_id', Auth::id())
-                ->where('item_id', $item_id)
-                ->delete();
-
-        return back()->with('success', 'お気に入りを解除しました。');
+        return response()->json(['status' => 'added']);
     }
 }

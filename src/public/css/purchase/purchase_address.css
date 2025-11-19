@@ -42,3 +42,25 @@
     color: red;
     font-size: 0.9rem;
 }
+
+/* 1400px～1540px の画面用レスポンシブ */
+@media (min-width: 1400px) and (max-width: 1540px) {
+
+    .address-edit-wrapper {
+        max-width: 520px;   /* 全体を少しだけ細く */
+        margin: 50px auto;
+    }
+
+    .address-form {
+        gap: 16px;          /* フォーム間の余白を縮める */
+    }
+
+    .form-group input {
+        padding: 8px;       /* 入力欄の高さを少し小さく */
+    }
+
+    .btn-submit {
+        padding: 10px;      /* ボタンも少し小さく */
+        font-size: 0.95rem;
+    }
+}

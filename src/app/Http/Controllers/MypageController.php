@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Item;
 
 class MypageController extends Controller
 {
@@ -16,20 +17,20 @@ class MypageController extends Controller
         $user = Auth::user();
 
         // タブ指定（デフォルトは「sold」＝出品した商品）
-        $page = $request->query('page', 'sell'); // tab → page に変更、デフォルトは sell に
+        $page = $request->query('page', 'sell');
 
-        // 出品した商品（itemsテーブル）
-        $soldItems = \App\Models\Item::where('user_id', $user->id)->get();
+        // 出品した商品（Productモデルを使用）
+        $soldItems = Product::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-        // 購入した商品（purchasesテーブル経由で items を取得）
-        $purchasedItems = \App\Models\Item::whereHas('purchases', function ($query) use ($user) {
+        // 購入した商品（購入履歴）
+        $purchasedItems = Item::whereHas('purchases', function ($query) use ($user) {
             $query->where('user_id', $user->id);
-        })->get();
+        })->orderBy('created_at', 'desc')->get();
 
         return view('mypage.mypage', compact('user', 'page', 'soldItems', 'purchasedItems'));
     }
-
-
 
     /**
      * プロフィール編集画面
@@ -37,6 +38,7 @@ class MypageController extends Controller
     public function edit()
     {
         $user = Auth::user();
+
         return view('mypage.profile', compact('user'));
     }
 
@@ -48,20 +50,18 @@ class MypageController extends Controller
         $user = Auth::user();
 
         $validated = $request->validate([
-            'name'        => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'postal_code' => 'nullable|string|max:10',
-            'address'     => 'nullable|string|max:255',
-            'building'    => 'nullable|string|max:255',
-            'image'       => 'nullable|image|max:2048',
+            'address' => 'nullable|string|max:255',
+            'building' => 'nullable|string|max:255',
+            'image' => 'nullable|image|max:2048',
         ]);
 
-        // プロフィール画像アップロード
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('avatars', 'public');
             $validated['image'] = $path;
         }
 
-        // ユーザー情報更新
         $user->update($validated);
 
         return back()->with('message', 'プロフィールを更新しました！');

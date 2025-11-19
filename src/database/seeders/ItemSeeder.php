@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -9,6 +10,15 @@ class ItemSeeder extends Seeder
 {
     public function run(): void
     {
+        // システム商品用ユーザーを作成（存在しなければ作成）
+        $user = User::firstOrCreate([
+            'email' => 'system@example.com',
+        ], [
+            'name' => 'システム商品',
+            'password' => bcrypt('password'),
+        ]);
+
+        // items テーブルにデータを挿入
         DB::table('items')->insert([
             [
                 'name' => '腕時計',
@@ -17,8 +27,8 @@ class ItemSeeder extends Seeder
                 'description' => 'スタイリッシュなデザインのメンズ腕時計',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg',
                 'condition' => '良好',
-                'user_id' => 1,
-                'category_id' => 1,
+                'user_id' => $user->id,
+                'categories' => json_encode([1]), // category_id → categories JSON
             ],
             [
                 'name' => 'HDD',
@@ -27,8 +37,8 @@ class ItemSeeder extends Seeder
                 'description' => '高速で信頼性の高いハードディスク',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/HDD+Hard+Disk.jpg',
                 'condition' => '目立った傷や汚れなし',
-                'user_id' => 1,
-                'category_id' => 1,
+                'user_id' => $user->id,
+                'categories' => json_encode([2]),
             ],
             [
                 'name' => '玉ねぎ3束',
@@ -37,8 +47,8 @@ class ItemSeeder extends Seeder
                 'description' => '新鮮な玉ねぎ3束のセット',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/iLoveIMG+d.jpg',
                 'condition' => 'やや傷や汚れあり',
-                'user_id' => 1,
-                'category_id' => 1,
+                'user_id' => $user->id,
+                'categories' => json_encode([3]),
             ],
             [
                 'name' => '革靴',
@@ -47,8 +57,8 @@ class ItemSeeder extends Seeder
                 'description' => 'クラシックなデザインの革靴',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Leather+Shoes+Product+Photo.jpg',
                 'condition' => '状態が悪い',
-                'user_id' => 1,
-                'category_id' => 1,
+                'user_id' => $user->id,
+                'categories' => json_encode([4]),
             ],
             [
                 'name' => 'ノートPC',
@@ -57,8 +67,8 @@ class ItemSeeder extends Seeder
                 'description' => '高性能なノートパソコン',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Living+Room+Laptop.jpg',
                 'condition' => '良好',
-                'user_id' => 1,
-                'category_id' => 1,
+                'user_id' => $user->id,
+                'categories' => json_encode([2]),
             ],
             [
                 'name' => 'マイク',
@@ -67,8 +77,8 @@ class ItemSeeder extends Seeder
                 'description' => '高音質のレコーディング用マイク',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Music+Mic+4632231.jpg',
                 'condition' => '目立った傷や汚れなし',
-                'user_id' => 1,
-                'category_id' => 1,
+                'user_id' => $user->id,
+                'categories' => json_encode([5]),
             ],
             [
                 'name' => 'ショルダーバッグ',
@@ -77,8 +87,8 @@ class ItemSeeder extends Seeder
                 'description' => 'おしゃれなショルダーバッグ',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Purse+fashion+pocket.jpg',
                 'condition' => 'やや傷や汚れあり',
-                'user_id' => 1,
-                'category_id' => 1,
+                'user_id' => $user->id,
+                'categories' => json_encode([4]),
             ],
             [
                 'name' => 'タンブラー',
@@ -87,8 +97,8 @@ class ItemSeeder extends Seeder
                 'description' => '使いやすいタンブラー',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Tumbler+souvenir.jpg',
                 'condition' => '状態が悪い',
-                'user_id' => 1,
-                'category_id' => 1,
+                'user_id' => $user->id,
+                'categories' => json_encode([5]),
             ],
             [
                 'name' => 'コーヒーミル',
@@ -97,8 +107,8 @@ class ItemSeeder extends Seeder
                 'description' => '手動のコーヒーミル',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Waitress+with+Coffee+Grinder.jpg',
                 'condition' => '良好',
-                'user_id' => 1,
-                'category_id' => 1,
+                'user_id' => $user->id,
+                'categories' => json_encode([5]),
             ],
             [
                 'name' => 'メイクセット',
@@ -107,8 +117,8 @@ class ItemSeeder extends Seeder
                 'description' => '便利なメイクアップセット',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/%E5%A4%96%E5%87%BA%E3%83%A1%E3%82%A4%E3%82%AF%E3%82%A2%E3%83%83%E3%83%95%E3%82%9A%E3%82%BB%E3%83%83%E3%83%88.jpg',
                 'condition' => '目立った傷や汚れなし',
-                'user_id' => 1,
-                'category_id' => 1,
+                'user_id' => $user->id,
+                'categories' => json_encode([5]),
             ],
         ]);
     }

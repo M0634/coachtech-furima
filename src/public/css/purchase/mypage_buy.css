@@ -113,9 +113,31 @@ select {
     background-color: #d74c4c;
 }
 
-/* レスポンシブ対応 */
-@media (max-width: 768px) {
+/* 1400px～1540px の画面用レスポンシブ */
+@media (min-width: 1400px) and (max-width: 1540px) {
+
     .buy-container {
-        flex-direction: column;
+        max-width: 900px;        /* 全体を少し細く */
+        gap: 30px;               /* 左右の間を縮める */
+        padding: 0 10px;
+    }
+
+    .item-image {
+        width: 100px;            /* 画像少し縮小 */
+        height: 100px;
+    }
+
+    .item-detail h2 {
+        font-size: 1.1rem;       /* 少しだけ縮小 */
+    }
+
+    .item-price {
+        font-size: 1.2rem;
+    }
+
+    .summary-box {
+        padding: 12px;           /* 右側の余白も最適化 */
     }
 }
+
+

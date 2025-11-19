@@ -30,6 +30,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    padding: 5px;
+
+    /* altテキスト用のスタイル */
+    font-size: 0.8rem;        /* 文字を少し小さめに */
+    color: #666;
+    line-height: 1.2;         /* 縦方向も中央に見える調整 */
+    word-break: break-word;    /* 長い文字列を折り返す */
+    position: relative;
+
 }
 
 .profile-image-preview img {
@@ -39,6 +49,10 @@
     display: block;
 }
 
+.profile-image-preview span {
+    position: relative;
+    top: 10px; /* 下にずらす量。調整可能 */
+}
 
 
 .image-select-btn {
@@ -90,4 +104,45 @@
 
 .update-btn:hover {
     background-color: #e1574b;
+}
+
+/* ==============================
+   レスポンシブ：大画面(1400px〜1540px)
+============================== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .profile-container {
+        max-width: 600px;
+        padding: 50px 40px;
+        border-radius: 14px;
+    }
+
+    .profile-title {
+        font-size: 1.8rem;
+        margin-bottom: 35px;
+    }
+
+    .profile-image-area {
+        gap: 4rem;
+        margin-bottom: 30px;
+    }
+
+    .profile-image-preview {
+        width: 140px;
+        height: 140px;
+    }
+
+    .image-select-btn {
+        font-size: 1rem;
+        padding: 8px 18px;
+    }
+
+    .form-group input {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    .update-btn {
+        padding: 14px;
+        font-size: 1.05rem;
+    }
 }

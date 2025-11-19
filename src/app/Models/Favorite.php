@@ -11,18 +11,15 @@ class Favorite extends Model
 
     protected $fillable = [
         'user_id',
-        'item_id',
+        'favoritable_id',
+        'favoritable_type',
     ];
 
-    /** お気に入りしたユーザー */
-    public function user()
+    /**
+     * 多態リレーション
+     */
+    public function favoritable()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    /** お気に入りされた商品 */
-    public function item()
-    {
-        return $this->belongsTo(Item::class);
+        return $this->morphTo();
     }
 }

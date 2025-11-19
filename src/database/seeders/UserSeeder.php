@@ -10,6 +10,8 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
+        DB::table('users')->where('email', 'test@example.com')->delete();
+        
         DB::table('users')->insert([
             'name' => 'テストユーザー',
             'email' => 'test@example.com',

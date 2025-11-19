@@ -70,3 +70,42 @@
     font-size: 12px;
     margin-top: 4px;
 }
+
+/* ===== 1400px〜1540px 用レスポンシブ ===== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+
+    .register-container {
+        max-width: 480px;   /* フォームを少し広く */
+        padding: 50px 30px; /* ゆったり見えるように余白UP */
+        margin: 100px auto;
+    }
+
+    .register-title {
+        font-size: 28px;    /* タイトル少し大きく */
+        margin-bottom: 45px;
+    }
+
+    .form-group label {
+        font-size: 16px;    /* ラベルを大きく */
+        margin-bottom: 10px;
+    }
+
+    .form-group input {
+        padding: 12px;
+        font-size: 16px;    /* 入力文字少し大きく */
+    }
+
+    .register-btn {
+        padding: 14px;
+        font-size: 18px;    /* ボタンも拡大 */
+    }
+
+    .login-link a {
+        font-size: 15px;
+    }
+
+    .error {
+        font-size: 13px;    /* エラーも見やすく */
+    }
+}
+

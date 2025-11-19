@@ -9,16 +9,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('items', function (Blueprint $table) {
-            if (!Schema::hasColumn('items', 'brand')) {
+            if (! Schema::hasColumn('items', 'brand')) {
                 $table->string('brand')->nullable();
             }
-            if (!Schema::hasColumn('items', 'img_url')) {
+            if (! Schema::hasColumn('items', 'img_url')) {
                 $table->string('img_url')->nullable();
             }
-            if (!Schema::hasColumn('items', 'condition')) {
+            if (! Schema::hasColumn('items', 'condition')) {
                 $table->string('condition')->nullable();
             }
-});
+        });
 
     }
 

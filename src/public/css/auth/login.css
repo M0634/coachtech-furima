@@ -84,3 +84,34 @@
     color: red;
     font-size: 0.85rem;
 }
+
+/* ===== 1400px〜1540px 用レスポンシブ ===== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+
+    .login-container {
+        max-width: 480px;        /* 少し広げる */
+        padding: 35px 30px;      /* 余白を調整 */
+        margin: 80px auto;       /* 全体を少し下げて中央に */
+    }
+
+    .login-title {
+        font-size: 2rem;         /* 若干大きく */
+        margin-bottom: 30px;
+    }
+
+    .login-form input {
+        font-size: 1rem;         /* 文字を少し大きく */
+        padding: 12px;
+    }
+
+    .login-btn {
+        padding: 14px;
+        font-size: 1.1rem;       /* ボタンも少し大きく */
+    }
+
+    .register-link {
+        font-size: 1rem;
+        margin-top: 18px;
+    }
+}
+

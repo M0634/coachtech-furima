@@ -10,20 +10,28 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'content',   // コメント内容
-        'item_id',   // 商品ID（コメント対象）
-        'user_id',   // ← これを追加することでエラー解消！
+        'user_id',
+        'item_id',            // ← 追加（旧構成用）
+        'commentable_type',
+        'commentable_id',
+        'content',
     ];
 
-    // ユーザーとのリレーション
+    /** コメントしたユーザー */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // 商品とのリレーション
+    /** 旧構成：Itemとの関係（互換用） */
     public function item()
     {
         return $this->belongsTo(Item::class);
+    }
+
+    /** 新構成：Item / Product 両対応 */
+    public function commentable()
+    {
+        return $this->morphTo();
     }
 }

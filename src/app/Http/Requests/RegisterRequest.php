@@ -17,9 +17,10 @@ class RegisterRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:8',
-            'password_confirmation' => 'required',
+            'password_confirmation' => 'required|string|same:password',
         ];
     }
+
     public function messages(): array
     {
         return [
@@ -37,6 +38,4 @@ class RegisterRequest extends FormRequest
             'password_confirmation.required' => '確認用パスワードを入力してください',
         ];
     }
-
-
 }

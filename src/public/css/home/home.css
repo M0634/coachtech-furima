@@ -175,3 +175,48 @@
     text-transform: uppercase;
 }
 
+/* ==============================
+   1400px〜1540px 用レイアウト最適化
+============================== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+
+    /* --- タブメニュー調整 --- */
+    .tab-menu {
+        gap: 40px;           /* タブ間隔を広げて整える */
+        margin-top: 60px;
+    }
+
+    .tab-menu a {
+        margin-left: 3rem;   /* 左寄りしすぎ防止 */
+        padding: 10px 20px;
+        font-size: 1.05rem;
+    }
+
+    /* --- 商品グリッドの幅調整 --- */
+    .item-list {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 24px;
+    }
+
+    /* --- カードの影強め & サイズ調整 --- */
+    .item-card {
+        border-radius: 14px;
+    }
+
+    /* --- 画像の高さ調整（広い画面用） --- */
+    .item-img {
+        height: 260px;
+    }
+
+    /* 商品名のサイズを少しアップ */
+    .item-name {
+        font-size: 1.05rem;
+    }
+
+    /* sold オーバーレイも少し大きく */
+    .item-card.sold .sold-overlay {
+        font-size: 1.8rem;
+    }
+}
+
+

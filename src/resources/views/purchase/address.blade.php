@@ -13,28 +13,34 @@
     <form action="{{ route('purchase.address.update', ['item_id' => $item->id]) }}" method="POST" class="address-form">
         @csrf
 
+        {{-- 郵便番号 --}}
         <div class="form-group">
             <label for="postal_code">郵便番号</label>
             <input type="text" name="postal_code" id="postal_code"
-                   value="{{ old('postal_code', $profile->postal_code) }}">
+                   value="{{ old('postal_code', $profile->postal_code ?? '') }}">
             @error('postal_code')
                 <p class="error">{{ $message }}</p>
             @enderror
         </div>
 
+        {{-- 住所 --}}
         <div class="form-group">
             <label for="address">住所</label>
             <input type="text" name="address" id="address"
-                   value="{{ old('address', $profile->address) }}">
+                   value="{{ old('address', $profile->address ?? '') }}">
             @error('address')
                 <p class="error">{{ $message }}</p>
             @enderror
         </div>
 
+        {{-- 建物名 --}}
         <div class="form-group">
             <label for="building">建物名</label>
             <input type="text" name="building" id="building"
-                   value="{{ old('building', $profile->building) }}">
+                   value="{{ old('building', $profile->building ?? '') }}">
+            @error('building')
+                <p class="error">{{ $message }}</p>
+            @enderror
         </div>
 
         <button type="submit" class="btn-submit">更新する</button>

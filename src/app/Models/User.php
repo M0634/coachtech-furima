@@ -13,7 +13,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory, Notifiable;
 
     /**
-     *
      * @var array<int, string>
      */
     protected $fillable = [
@@ -45,12 +44,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function setPasswordAttribute($value)
     {
-    if (!empty($value) && !preg_match('/^\$2y\$/', $value)) {
-        $this->attributes['password'] = Hash::make($value);
-    } else {
-        $this->attributes['password'] = $value;
+        if (! empty($value) && ! preg_match('/^\$2y\$/', $value)) {
+            $this->attributes['password'] = Hash::make($value);
+        } else {
+            $this->attributes['password'] = $value;
+        }
     }
-    }
+
     public function profile()
     {
         return $this->hasOne(Profile::class)->withDefault([
@@ -59,10 +59,14 @@ class User extends Authenticatable implements MustVerifyEmail
             'building' => '',
         ]);
     }
+
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
     }
 
-
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
 }

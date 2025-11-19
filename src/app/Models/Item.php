@@ -18,6 +18,7 @@ class Item extends Model
         'price',
         'status',
         'image_path',
+        'condition',
     ];
 
     /** 出品者（ユーザー） */
@@ -38,16 +39,18 @@ class Item extends Model
         return $this->hasMany(Purchase::class);
     }
 
-    /** お気に入り（多対一 → 中間テーブル favorite） */
+    /** お気に入り（旧構成のため残す） */
     public function favorites()
     {
-        return $this->hasMany(Favorite::class);
+        // 新構成にも対応できるよう morphMany にしておく
+        return $this->morphMany(Favorite::class, 'favoritable');
     }
 
     /** コメント一覧 */
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        // Comment モデルが morphMany に対応していればこれでもOK
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     /**
@@ -56,7 +59,7 @@ class Item extends Model
      */
     public function getIsFavoriteAttribute(): bool
     {
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return false;
         }
 
@@ -64,10 +67,10 @@ class Item extends Model
             ->where('user_id', Auth::id())
             ->exists();
     }
+
+    /** いいね（もし使っていれば） */
     public function likes()
     {
         return $this->hasMany(Like::class);
     }
-
-
 }

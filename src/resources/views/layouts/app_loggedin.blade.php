@@ -18,10 +18,7 @@
         </div>
         <div class="header-center">
             <form action="{{ route('home') }}" method="GET" class="search-form">
-                {{-- 現在のタブが未定義でも安全 --}}
                 <input type="hidden" name="tab" value="{{ request('tab', 'recommend') }}">
-
-                {{-- 検索ボックス（タブ切り替え後も入力値を保持） --}}
                 <input
                     type="text"
                     name="q"
@@ -29,11 +26,6 @@
                     placeholder="なにをお探しですか？"
                     class="search-box"
                 >
-
-                {{-- 送信ボタン --}}
-                <button type="submit" class="search-btn">
-                    <i class="fas fa-search"></i>
-                </button>
             </form>
         </div>
 
@@ -64,5 +56,6 @@
     <main class="main-content">
         @yield('content')
     </main>
+    @stack('scripts')
 </body>
 </html>

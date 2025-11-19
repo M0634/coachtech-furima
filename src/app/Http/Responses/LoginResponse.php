@@ -2,8 +2,8 @@
 
 namespace App\Http\Responses;
 
-use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 
 class LoginResponse implements LoginResponseContract
 {
@@ -33,6 +33,7 @@ class LoginResponse implements LoginResponseContract
             // 2回目ログインかつメール認証済 → DBを2に更新してマイページ
             $user->first_login_verified = 2;
             $user->save();
+
             return redirect()->intended('/mypage');
         }
 
@@ -43,6 +44,7 @@ class LoginResponse implements LoginResponseContract
             if (! $user->hasVerifiedEmail()) {
                 return redirect()->route('verification.notice');
             }
+
             return redirect()->intended('/mypage');
         }
 

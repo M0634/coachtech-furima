@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Item;
+use Illuminate\Database\Seeder;
 
 class DummyItemsSeeder extends Seeder
 {
@@ -27,7 +27,7 @@ class DummyItemsSeeder extends Seeder
                 'name' => $data['name'],
                 'image' => $data['image'],
                 'price' => rand(1000, 20000), // 適当に価格をつける
-                'description' => $data['name'] . 'の説明',
+                'description' => $data['name'].'の説明',
             ]);
         }
     }

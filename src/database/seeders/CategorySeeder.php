@@ -17,27 +17,27 @@ class CategorySeeder extends Seeder
             ->update(['categories' => json_encode([1])]);
 
         DB::table('items')->where(function ($query) {
-                $query->where('name', 'like', '%PC%')
-                      ->orWhere('name', 'like', '%HDD%')
-                      ->orWhere('name', 'like', '%パソコン%');
-            })
+            $query->where('name', 'like', '%PC%')
+                  ->orWhere('name', 'like', '%HDD%')
+                  ->orWhere('name', 'like', '%パソコン%');
+        })
             ->update(['categories' => json_encode([2])]);
 
         DB::table('items')->where('name', 'like', '%玉ねぎ%')
             ->update(['categories' => json_encode([3])]);
 
         DB::table('items')->where(function ($query) {
-                $query->where('name', 'like', '%靴%')
-                      ->orWhere('name', 'like', '%バッグ%');
-            })
+            $query->where('name', 'like', '%靴%')
+                  ->orWhere('name', 'like', '%バッグ%');
+        })
             ->update(['categories' => json_encode([4])]);
 
         DB::table('items')->where(function ($query) {
-                $query->where('name', 'like', '%マイク%')
-                      ->orWhere('name', 'like', '%コーヒーミル%')
-                      ->orWhere('name', 'like', '%タンブラー%')
-                      ->orWhere('name', 'like', '%メイク%');
-            })
+            $query->where('name', 'like', '%マイク%')
+                  ->orWhere('name', 'like', '%コーヒーミル%')
+                  ->orWhere('name', 'like', '%タンブラー%')
+                  ->orWhere('name', 'like', '%メイク%');
+        })
             ->update(['categories' => json_encode([5])]);
 
         // 外部キー制約を再有効化（必要ないかも）

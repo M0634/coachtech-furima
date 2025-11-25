@@ -27,7 +27,6 @@
 }
 
 .form-group input {
-    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -35,7 +34,6 @@
 }
 
 .register-btn {
-    width: 100%;
     padding: 12px;
     background-color: #e25c5c;
     color: #fff;
@@ -46,6 +44,14 @@
     cursor: pointer;
     transition: background 0.3s;
 }
+
+.form-group label,
+.form-group input,
+.register-btn {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 
 .register-btn:hover {
     background-color: #d24a4a;
@@ -75,29 +81,29 @@
 @media (min-width: 1400px) and (max-width: 1540px) {
 
     .register-container {
-        max-width: 480px;   /* フォームを少し広く */
-        padding: 50px 30px; /* ゆったり見えるように余白UP */
+        max-width: 480px;
+        padding: 50px 30px;
         margin: 100px auto;
     }
 
     .register-title {
-        font-size: 28px;    /* タイトル少し大きく */
+        font-size: 28px;
         margin-bottom: 45px;
     }
 
     .form-group label {
-        font-size: 16px;    /* ラベルを大きく */
+        font-size: 16px;
         margin-bottom: 10px;
     }
 
     .form-group input {
         padding: 12px;
-        font-size: 16px;    /* 入力文字少し大きく */
+        font-size: 16px;
     }
 
     .register-btn {
         padding: 14px;
-        font-size: 18px;    /* ボタンも拡大 */
+        font-size: 18px;
     }
 
     .login-link a {
@@ -105,7 +111,6 @@
     }
 
     .error {
-        font-size: 13px;    /* エラーも見やすく */
+        font-size: 13px;
     }
 }
-

@@ -27,18 +27,17 @@ Route::middleware('auth')->group(function () {
     })->middleware('throttle:6,1')->name('verification.send');
 
     Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
+        $request->fulfill();
 
-    // テスト環境でも必ずユーザーを取得
-    $user = $request->user() ?? \App\Models\User::find($request->route('id'));
+        $user = $request->user() ?? \App\Models\User::find($request->route('id'));
 
-    if ($user && ! $user->first_login_verified) {
-        $user->first_login_verified = true;
-        $user->save();
-    }
+        if ($user && ! $user->first_login_verified) {
+            $user->first_login_verified = true;
+            $user->save();
+        }
 
-    return redirect('/mypage/profile')->with('message', 'メール認証が完了しました！');
-})->middleware(['auth', 'signed', 'throttle:6,1'])->name('verification.verify');
+        return redirect('/mypage/profile')->with('message', 'メール認証が完了しました！');
+    })->middleware(['auth', 'signed', 'throttle:6,1'])->name('verification.verify');
 
 });
 

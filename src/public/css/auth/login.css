@@ -1,4 +1,4 @@
-/* ===== ログインコンテナ ===== */
+
 .login-container {
     max-width: 400px;
     margin: 60px auto;
@@ -10,14 +10,14 @@
     box-sizing: border-box;
 }
 
-/* ===== タイトル ===== */
+
 .login-title {
     font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 25px;
 }
 
-/* ===== フォーム全体 ===== */
+
 .login-form {
     width: 100%;
 }
@@ -27,14 +27,15 @@
     text-align: left;
 }
 
-/* ===== ラベル ===== */
+
 .login-form label {
     display: block;
     font-weight: bold;
     margin-bottom: 6px;
+    padding-left: 30px;
 }
 
-/* ===== 入力欄とボタンを統一幅に ===== */
+
 .login-form input,
 .login-btn {
     width: 100%;
@@ -42,14 +43,14 @@
     border-radius: 6px;
 }
 
-/* ===== 入力欄 ===== */
+
 .login-form input {
     padding: 10px;
     font-size: 0.95rem;
     border: 1px solid #ccc;
 }
 
-/* ===== ログインボタン ===== */
+
 .login-btn {
     padding: 12px;
     background-color: #f26a5b;
@@ -64,7 +65,7 @@
     background-color: #e1574b;
 }
 
-/* ===== 登録リンク ===== */
+
 .register-link {
     margin-top: 15px;
     font-size: 0.9rem;
@@ -79,34 +80,37 @@
     text-decoration: underline;
 }
 
-/* ===== エラーメッセージ ===== */
+
 .error {
+    display: block;
+    margin: 20px 0 0 30px;
     color: red;
     font-size: 0.85rem;
+    text-align: left;
 }
 
 /* ===== 1400px〜1540px 用レスポンシブ ===== */
 @media (min-width: 1400px) and (max-width: 1540px) {
 
     .login-container {
-        max-width: 480px;        /* 少し広げる */
-        padding: 35px 30px;      /* 余白を調整 */
-        margin: 80px auto;       /* 全体を少し下げて中央に */
+        max-width: 480px;
+        padding: 35px 30px;
+        margin: 80px auto;
     }
 
     .login-title {
-        font-size: 2rem;         /* 若干大きく */
+        font-size: 2rem;
         margin-bottom: 30px;
     }
 
     .login-form input {
-        font-size: 1rem;         /* 文字を少し大きく */
+        font-size: 1rem;
         padding: 12px;
     }
 
     .login-btn {
         padding: 14px;
-        font-size: 1.1rem;       /* ボタンも少し大きく */
+        font-size: 1.1rem;
     }
 
     .register-link {
@@ -114,4 +118,91 @@
         margin-top: 18px;
     }
 }
+
+.login-container,
+.register-container {
+    max-width: 400px;
+    padding: 30px 25px;
+    margin: 60px auto;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.login-title,
+.register-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+}
+/* フォーム全体 */
+.login-form,
+.register-form {
+    width: 100%;
+}
+
+/* 各フォームグループ */
+.login-form .form-group,
+.register-form .form-group {
+    margin-bottom: 18px;
+}
+
+.login-form label,
+.register-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    text-align: left;
+}
+
+.login-form input,
+.register-form input {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+/* ボタン */
+.login-btn {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin: 10px auto 0 auto;
+    padding: 12px;
+    background-color: #f26a5b;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #e1574b;
+}
+
+/* レスポンシブ */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .login-container {
+        max-width: 480px;
+        padding: 35px 30px;
+        margin: 80px auto;
+    }
+
+    .login-form input,
+    .login-btn {
+        max-width: 360px;
+    }
+}
+
 

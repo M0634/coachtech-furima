@@ -6,7 +6,7 @@
     margin: 0 auto;
 }
 
-/* 画像部分 */
+
 .item-image img,
 .no-image {
     width: 400px;
@@ -21,7 +21,7 @@
     object-fit: cover;
 }
 
-/* 情報部分 */
+
 .item-info {
     flex: 1;
 }
@@ -46,7 +46,7 @@
     margin-top: 15px;
 }
 
-/* いいね・コメント */
+
 .like-comment {
     margin-bottom: 2rem;
 }
@@ -56,7 +56,7 @@
     font-size: 1.2rem;
 }
 
-/* 購入ボタン */
+
 .btn-purchase {
     background: #f25b5b;
     color: #fff;
@@ -70,7 +70,7 @@
     background: #d94b4b;
 }
 
-/* セクションタイトル */
+
 .section-title {
     font-weight: bold;
     margin-top: 30px;
@@ -79,7 +79,7 @@
     padding-left: 8px;
 }
 
-/* 詳細情報 */
+
 .item-description,
 .item-meta {
     line-height: 1.6;
@@ -91,7 +91,7 @@
     border-radius: 4px;
 }
 
-/* コメント一覧 */
+
 .comments {
     margin-top: 10px;
     max-height: 100px;
@@ -120,7 +120,7 @@
     margin-top: 5px;
 }
 
-/* コメントフォーム */
+
 .comment-form {
     margin-top: 20px;
     display: flex;
@@ -166,7 +166,7 @@
     background-color: #2779bd;
 }
 
-/* エラーメッセージ全般 */
+
 .error-message {
     color: red;
     font-size: 14px;
@@ -178,14 +178,14 @@
 ============================== */
 @media (min-width: 1400px) and (max-width: 1540px) {
 
-    /* --- コンテナの横幅調整 --- */
+    
     .item-detail-container {
-        max-width: 1200px;        /* 画面が広い時に横幅を少し広げる */
+        max-width: 1200px;        
         padding: 50px 40px;
         gap: 50px;
     }
 
-    /* --- 商品画像を少し大きく --- */
+    
     .item-image img,
     .no-image {
         width: 460px;
@@ -193,7 +193,7 @@
         font-size: 1.3rem;
     }
 
-    /* --- 商品名と価格をバランスよく大きく --- */
+    
     .item-name {
         font-size: 2rem;
     }
@@ -202,25 +202,25 @@
         font-size: 1.7rem;
     }
 
-    /* --- いいね・コメント表示調整 --- */
+    
     .like-comment span {
         font-size: 1.3rem;
     }
 
-    /* --- セクションタイトル大きめに --- */
+    
     .section-title {
         font-size: 1.15rem;
         margin-top: 35px;
         margin-bottom: 12px;
     }
 
-    /* --- コメント欄の高さを広げる --- */
+    
     .comments {
         max-height: 150px;
         padding: 12px;
     }
 
-    /* --- コメント部分の文字バランス --- */
+    
     .comment {
         padding: 10px;
     }
@@ -233,7 +233,7 @@
         font-size: 1rem;
     }
 
-    /* --- コメントフォームも広めに見やすく --- */
+    
     .comment-form textarea {
         min-height: 130px;
         font-size: 1.05rem;
@@ -244,3 +244,68 @@
         font-size: 1rem;
     }
 }
+
+/* ==============================
+   768px〜850px レイアウト最適化（追記）
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+
+    
+    .item-detail-container {
+        flex-direction: column;   
+        max-width: 90%;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    
+    .item-image img,
+    .no-image {
+        width: 320px;
+        height: 320px;
+        margin: 0 auto;           
+        font-size: 1.1rem;
+    }
+
+    
+    .item-name {
+        font-size: 1.6rem;
+    }
+
+    .item-price {
+        font-size: 1.4rem;
+    }
+
+    
+    .like-comment span {
+        font-size: 1.1rem;
+    }
+
+    
+    .section-title {
+        font-size: 1.05rem;
+        margin-top: 25px;
+    }
+
+    
+    .comments {
+        max-height: 120px;
+        padding: 10px;
+    }
+
+    .comment {
+        padding: 8px;
+    }
+
+    
+    .comment-form textarea {
+        min-height: 110px;
+        font-size: 0.95rem;
+    }
+
+    .comment-form .btn-comment {
+        padding: 8px 16px;
+        font-size: 0.95rem;
+    }
+}
+

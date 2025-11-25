@@ -6,6 +6,7 @@
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     padding: 40px 30px;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .profile-title {
@@ -26,34 +27,49 @@
     height: 120px;
     border-radius: 50%;
     overflow: hidden;
-    background-color: #e5e5e5;
+    background: #d9d9d9;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 5px;
-
-    /* altテキスト用のスタイル */
-    font-size: 0.8rem;        /* 文字を少し小さめに */
-    color: #666;
-    line-height: 1.2;         /* 縦方向も中央に見える調整 */
-    word-break: break-word;    /* 長い文字列を折り返す */
-    position: relative;
-
 }
 
+/* 通常の画像 */
 .profile-image-preview img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
+
+    /* alt をブラウザが描画しないようにする（透明化）*/
+    color: transparent;
+    font-size: 0;
+}
+
+/* 疑似要素で alt を中央に表示（画像が壊れた時だけ見える） */
+.profile-image-preview img:after {
+    content: attr(alt);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+}
+
+/* 画像が壊れている場合は img を透明にして疑似要素だけ見せる */
+.profile-image-preview img[src=""],
+.profile-image-preview img:not([src]),
+.profile-image-preview img[src="broken"] {
+    opacity: 0;
 }
 
 .profile-image-preview span {
     position: relative;
-    top: 10px; /* 下にずらす量。調整可能 */
+    top: 10px;
 }
-
 
 .image-select-btn {
     display: inline-block;
@@ -72,8 +88,10 @@
 }
 
 .form-group {
+    width: 100%;
     margin-bottom: 18px;
     text-align: left;
+    box-sizing: border-box;
 }
 
 .form-group label {
@@ -82,23 +100,28 @@
     margin-bottom: 6px;
 }
 
-.form-group input {
+.form-group input,
+.update-btn {
+    display: block;
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+    box-sizing: border-box;
+    padding: 10px 12px;
     border-radius: 6px;
     font-size: 0.95rem;
 }
 
+/* input の枠線 */
+.form-group input {
+    border: 1px solid #ccc;
+}
+
+/* 更新ボタン */
 .update-btn {
-    width: 100%;
     background-color: #f26a5b;
     color: #fff;
     border: none;
-    padding: 12px;
-    font-size: 1rem;
-    border-radius: 6px;
     cursor: pointer;
+    padding: 12px;
     transition: background-color 0.3s;
 }
 
@@ -144,5 +167,51 @@
     .update-btn {
         padding: 14px;
         font-size: 1.05rem;
+    }
+}
+
+/* ==============================
+   768px〜850px レイアウト最適化
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+
+    .profile-container {
+        max-width: 430px;
+        padding: 35px 25px;
+        margin: 50px auto;
+    }
+
+    .profile-title {
+        font-size: 1.4rem;
+        margin-bottom: 25px;
+    }
+
+    .profile-image-area {
+        gap: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .profile-image-preview {
+        width: 110px;
+        height: 110px;
+    }
+
+    .image-select-btn {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+
+    .form-group label {
+        font-size: 0.95rem;
+    }
+
+    .form-group input {
+        font-size: 0.9rem;
+        padding: 9px;
+    }
+
+    .update-btn {
+        font-size: 0.95rem;
+        padding: 11px;
     }
 }

@@ -48,16 +48,16 @@
 @media (min-width: 1400px) and (max-width: 1540px) {
 
     .verify-container {
-        padding: 140px 40px; /* 上下の余白を広く */
+        padding: 140px 40px; 
     }
 
     .verify-message {
-        font-size: 18px; /* 少し大きくして読みやすく */
+        font-size: 18px; 
         margin-bottom: 50px;
     }
 
     .verify-button {
-        padding: 12px 50px; /* ボタンを少し大きく */
+        padding: 12px 50px; 
         font-size: 18px;
     }
 
@@ -66,7 +66,33 @@
     }
 
     .resend-link {
-        font-size: 16px; /* テキストリンクも調整 */
+        font-size: 16px; 
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 850px) {
+
+    .verify-container {
+        padding: 120px 30px; 
+    }
+
+    .verify-message {
+        font-size: 17px; 
+        margin-bottom: 45px;
+    }
+
+    .verify-button {
+        padding: 12px 45px; 
+        font-size: 17px;
+    }
+
+    .verify-button-area {
+        margin-bottom: 35px;
+    }
+
+    .resend-link {
+        font-size: 15px;
     }
 }
 

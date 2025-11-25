@@ -5,20 +5,21 @@
     max-width: 1000px;
     margin: 0 auto;
     padding: 40px 20px;
+    box-sizing: border-box;
 }
 
 /* ==============================
-   プロフィールセクション（横並び・レスポンシブ対応）
+   プロフィールセクション
 ============================== */
 .profile-section {
     max-width: 800px;
     margin: 0 auto;
     display: flex;
-    align-items: center; /* 縦中央揃え */
-    gap: 20px; /* アバターと情報の間隔 */
+    align-items: center;
+    gap: 20px;
     padding: 40px 20px;
     border-bottom: 1px solid #ccc;
-    flex-wrap: wrap; /* 幅が狭いと縦並びに落ちる */
+    flex-wrap: wrap;
 }
 
 .profile-avatar {
@@ -28,17 +29,60 @@
     overflow: hidden;
     border: 2px solid #ddd;
     background: #d9d9d9;
-    flex-shrink: 0; /* 小さい画面でも縮まない */
+    flex-shrink: 0;
+    position: relative;
 }
 
+/* 通常の画像 */
 .avatar-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+
+    /* alt のブラウザデフォルト表示をさせない */
+    color: transparent;
+    font-size: 0;
+
+    /* 疑似要素の基準にする */
+    position: relative;
 }
 
+/* alt テキストを中央表示（画像が壊れた時のみ表示） */
+.avatar-img::after {
+    content: attr(alt);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    width: 90%;
+    line-height: 1.2;
+    opacity: 0; /* ← 画像がある間は非表示 */
+}
+
+/* 画像が壊れている時だけ alt を表示 */
+.avatar-img[src=""],
+.avatar-img:not([src]),
+.avatar-img[src="broken"] {
+    opacity: 0; /* 画像を消す */
+}
+
+.avatar-img[src=""]::after,
+.avatar-img:not([src])::after,
+.avatar-img[src="broken"]::after {
+    opacity: 1; /* alt を表示 */
+}
+
+/* ==============================
+   プロフィール情報
+============================== */
 .profile-info {
-    flex: 1; /* 残りの横幅を占有 */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .username {
@@ -154,69 +198,37 @@
 }
 
 /* ==============================
-   1400px〜1540px レイアウト最適化
+   レスポンシブ: 1400px〜1540px
 ============================== */
 @media (min-width: 1400px) and (max-width: 1540px) {
+    .mypage-container { max-width: 1200px; padding: 50px 30px; }
+    .profile-section { max-width: 1000px; gap: 30px; padding: 50px 30px; }
+    .profile-avatar { width: 150px; height: 150px; }
+    .username { font-size: 1.8rem; }
+    .edit-profile-btn { font-size: 1rem; padding: 10px 18px; }
+    .mypage-content-full { padding: 50px 100px; }
+    .tab-menu { gap: 50px; margin-bottom: 25px; }
+    .tab-menu a { font-size: 1.1rem; }
+    .item-card { width: calc(25% - 20px); border-radius: 14px; }
+    .item-img { height: 260px; }
+    .item-name { font-size: 1.05rem; padding-left: 8px; }
+    .no-items { font-size: 1.1rem; }
+}
 
-    /* --- マイページ全体の横幅を拡張 --- */
-    .mypage-container {
-        max-width: 1200px;
-        padding: 50px 30px;
-    }
-
-    /* --- プロフィール部分を広めに調整 --- */
-    .profile-section {
-        max-width: 1000px;
-        gap: 30px;
-        padding: 50px 30px;
-    }
-
-    .profile-avatar {
-        width: 150px;
-        height: 150px;
-    }
-
-    .username {
-        font-size: 1.8rem;
-    }
-
-    .edit-profile-btn {
-        font-size: 1rem;
-        padding: 10px 18px;
-    }
-
-    /* --- 背景フル幅を広めに見せる --- */
-    .mypage-content-full {
-        padding: 50px 100px; /* 余白を増やして大画面用に */
-    }
-
-    /* --- タブメニューの視認性アップ --- */
-    .tab-menu {
-        gap: 50px;
-        margin-bottom: 25px;
-    }
-
-    .tab-menu a {
-        font-size: 1.1rem;
-    }
-
-    /* --- 商品カードを大きくして4列維持 --- */
-    .item-card {
-        width: calc(25% - 20px);
-        border-radius: 14px;
-    }
-
-    .item-img {
-        height: 260px;
-    }
-
-    .item-name {
-        font-size: 1.05rem;
-        padding-left: 8px;
-    }
-
-    /* --- "商品がありません" も少し大きく --- */
-    .no-items {
-        font-size: 1.1rem;
-    }
+/* ==============================
+   レスポンシブ: 768px〜850px
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+    .mypage-container { max-width: 90%; padding: 30px 15px; }
+    .profile-section { max-width: 100%; gap: 20px; padding: 30px 15px; flex-direction: row; }
+    .profile-avatar { width: 110px; height: 110px; }
+    .username { font-size: 1.3rem; }
+    .edit-profile-btn { font-size: 0.9rem; padding: 7px 14px; }
+    .mypage-content-full { padding: 30px 40px; }
+    .tab-menu { gap: 30px; margin-bottom: 15px; }
+    .tab-menu a { font-size: 1rem; }
+    .item-card { width: calc(33.333% - 14px); }
+    .item-img { height: 200px; }
+    .item-name { font-size: 0.95rem; }
+    .no-items { font-size: 1rem; }
 }

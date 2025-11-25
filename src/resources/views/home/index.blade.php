@@ -87,12 +87,11 @@
 {{-- JS をここに書く --}}
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const isLoggedIn = @json(auth()->check()); // ← ここでログイン状態を取得
+    const isLoggedIn = @json(auth()->check());
 
     document.querySelectorAll('.favorite-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             if (!isLoggedIn) {
-                // 未ログインならログインページへリダイレクト
                 window.location.href = "{{ route('login') }}";
                 return;
             }

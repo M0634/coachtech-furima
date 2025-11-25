@@ -57,7 +57,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* 画像部分 */
+
 .item-image {
     position: relative;
     overflow: hidden;
@@ -75,7 +75,7 @@
     transform: scale(1.05);
 }
 
-/* 商品名 */
+
 .item-name {
     margin: 10px;
     color: #000;
@@ -91,7 +91,7 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 10; /* ← 画像より前に出す */
+    z-index: 10;
 }
 
 .favorite-btn button {
@@ -101,21 +101,20 @@
     cursor: pointer;
 }
 
-/* デフォルト：お気に入りしていない（グレー） */
+
 .favorite-btn i {
     color: #ccc;
     font-size: 24px;
     transition: color 0.2s ease;
 }
 
-/* ✅ お気に入り済み（黄色） */
-/* button自体にactiveがつくパターン（recommendタブ用） */
+
+
 .favorite-btn button.active i,
 .favorite-btn button.active .fa-star {
     color: #FFD700;
 }
 
-/* formにactiveがつくパターン（mylistタブ用） */
 .favorite-btn.active i {
     color: #FFD700;
 }
@@ -180,42 +179,84 @@
 ============================== */
 @media (min-width: 1400px) and (max-width: 1540px) {
 
-    /* --- タブメニュー調整 --- */
+
     .tab-menu {
-        gap: 40px;           /* タブ間隔を広げて整える */
+        gap: 40px;
         margin-top: 60px;
     }
 
     .tab-menu a {
-        margin-left: 3rem;   /* 左寄りしすぎ防止 */
+        margin-left: 3rem;
         padding: 10px 20px;
         font-size: 1.05rem;
     }
 
-    /* --- 商品グリッドの幅調整 --- */
+
     .item-list {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 24px;
     }
 
-    /* --- カードの影強め & サイズ調整 --- */
+
     .item-card {
         border-radius: 14px;
     }
 
-    /* --- 画像の高さ調整（広い画面用） --- */
+
     .item-img {
         height: 260px;
     }
 
-    /* 商品名のサイズを少しアップ */
+
     .item-name {
         font-size: 1.05rem;
     }
 
-    /* sold オーバーレイも少し大きく */
+
     .item-card.sold .sold-overlay {
         font-size: 1.8rem;
+    }
+}
+
+/* ==============================
+   768px〜850px 用レイアウト最適化（追加）
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+
+
+    .tab-menu {
+        gap: 16px;
+        margin-top: 40px;
+    }
+
+    .tab-menu a {
+        margin-left: 2rem;
+        padding: 7px 14px;
+        font-size: 0.95rem;
+    }
+
+
+    .item-list {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 18px;
+    }
+
+
+    .item-card {
+        border-radius: 10px;
+    }
+
+
+    .item-img {
+        height: 200px;
+    }
+
+    .item-name {
+        font-size: 0.95rem;
+    }
+
+    .item-card.sold .sold-overlay {
+        font-size: 1.4rem;
     }
 }
 

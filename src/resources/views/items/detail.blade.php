@@ -14,13 +14,11 @@
     {{-- 左側：商品画像 --}}
     <div class="item-image">
         @php
-            // Item or Product の両方に対応した画像URL取得
             $imageUrl = $productOrItem->img_url
                 ?? $productOrItem->image
                 ?? $productOrItem->image_path
                 ?? null;
 
-            // 外部URLかどうかをチェック
             $isExternal = $imageUrl && preg_match('/^https?:\/\//', $imageUrl);
         @endphp
 

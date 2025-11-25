@@ -29,26 +29,22 @@
             </div>
 
             {{-- パスワード --}}
-<div class="form-group">
-    <label for="password">パスワード</label>
-    <input type="password" id="password" name="password">
-    @error('password')
-        <p class="error">{{ $message }}</p>
-    @enderror
-</div>
+            <div class="form-group">
+                <label for="password">パスワード</label>
+                <input type="password" id="password" name="password">
+                @error('password')
+                    <p class="error">{{ $message }}</p>
+                @enderror
+            </div>
 
-{{-- 確認用パスワード --}}
-<div class="form-group">
-    <label for="password_confirmation">確認用パスワード</label>
-    <input type="password" id="password_confirmation" name="password_confirmation">
-    @error('password_confirmation')
-        <p class="error">{{ $message }}</p>
-    @enderror
-</div>
-
-
-
-
+            {{-- 確認用パスワード --}}
+            <div class="form-group">
+                <label for="password_confirmation">確認用パスワード</label>
+                <input type="password" id="password_confirmation" name="password_confirmation">
+                @error('password_confirmation')
+                    <p class="error">{{ $message }}</p>
+                @enderror
+            </div>
             <button type="submit" class="register-btn">登録する</button>
         </form>
 

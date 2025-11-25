@@ -99,7 +99,7 @@ class PurchaseController extends Controller
         }
 
         // 🟢 購入記録の作成処理
-        $purchase = new Purchase;
+        $purchase = new Purchase();
         $purchase->user_id = $user->id;
 
         // ✅ ←ここで条件分岐して保存

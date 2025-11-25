@@ -1,10 +1,10 @@
-/* 全体リセット */
+
 body {
     margin: 0;
     font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
-/* ヘッダー */
+
 .header {
     display: flex;
     align-items: center;
@@ -12,26 +12,28 @@ body {
     background-color: #000;
     padding: 10px 20px;
     color: #fff;
-    flex-wrap: wrap; /* 型崩れ防止 */
+    flex-wrap: wrap; 
+    gap: 10px;
 }
 
-/* 左側（ロゴ + サイト名） */
+
 .header-left {
     display: flex;
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
+    min-width: 120px; 
 }
 .logo {
     height: 30px;
 }
 
-/* 中央（検索ボックス） */
+
 .header-center {
     flex: 1;
     display: flex;
     justify-content: center;
-    min-width: 200px; /* 型崩れ防止 */
+    min-width: 150px; 
     margin: 5px 0;
 }
 .search-form {
@@ -45,6 +47,7 @@ body {
     border: none;
     border-radius: 4px 0 0 4px;
     font-size: 14px;
+    min-width: 80px; 
 }
 .search-btn {
     border: none;
@@ -61,13 +64,14 @@ body {
     pointer-events: none;
 }
 
-/* 右側（ナビリンク + 出品ボタン） */
+
 .header-right {
     display: flex;
     align-items: center;
     gap: 20px;
     flex-shrink: 0;
     flex-wrap: wrap;
+    min-width: 100px; 
 }
 .nav-link {
     color: white;
@@ -77,9 +81,98 @@ body {
     cursor: pointer;
     font-weight: bold;
     text-decoration: none;
+    white-space: nowrap; 
 }
 .nav-link:hover {
     background-color: #fff;
     color: #000;
 }
 
+/* ==============================
+   768px〜850px レイアウト最適化（追記）
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+
+    
+    .header {
+        padding: 12px 16px;
+        gap: 10px;
+        flex-direction: column; 
+        align-items: flex-start;
+    }
+
+    
+    .header-left {
+        gap: 8px;
+    }
+
+    .logo {
+        height: 26px;
+    }
+
+    
+    .header-center {
+        order: 2;
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 8px;
+    }
+
+    .search-form {
+        max-width: 100%;
+    }
+
+    .search-box {
+        padding: 7px 10px;
+        font-size: 13px;
+        min-width: 0; 
+        flex: 1;
+    }
+
+    .search-btn {
+        padding: 7px 10px;
+    }
+
+    
+    .header-right {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 12px;
+        margin-top: 8px;
+    }
+
+    .nav-link {
+        padding: 5px 12px;
+        font-size: 14px;
+    }
+}
+
+/* ==============================
+   超狭幅対応（480px以下）
+============================== */
+@media (max-width: 480px) {
+
+    .header {
+        padding: 10px 12px;
+        gap: 8px;
+    }
+
+    .header-left {
+        min-width: 100px;
+    }
+
+    .search-box {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+
+    .search-btn {
+        padding: 6px 8px;
+    }
+
+    .nav-link {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+}

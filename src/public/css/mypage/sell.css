@@ -187,3 +187,56 @@
         font-size: 1.1rem;
     }
 }
+
+/* ==============================
+   768px〜850px（タブレット最適化・追記）
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+
+    .sell-container {
+        max-width: 600px;
+        padding: 20px 18px;
+        margin: 40px auto;
+    }
+
+    .sell-title {
+        font-size: 1.6rem;
+        margin-bottom: 35px;
+    }
+
+    .image-upload-box {
+        height: 210px;
+    }
+
+    .image-select-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    #remove-image {
+        width: 26px;
+        height: 26px;
+        font-size: 14px;
+    }
+
+    .category-tags {
+        gap: 8px;
+    }
+
+    .tag {
+        font-size: 0.85rem;
+        padding: 5px 12px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+        font-size: 0.95rem;
+        padding: 9px;
+    }
+
+    .submit-btn {
+        padding: 12px 55px;
+        font-size: 1rem;
+    }
+}

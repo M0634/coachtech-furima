@@ -14,13 +14,13 @@
     <div class="profile-section">
         <div class="profile-avatar">
             @php
-                $profile = Auth::user()->profile; // Profile情報を取得
+                $profile = Auth::user()->profile;
             @endphp
 
             @if(!empty($profile) && !empty($profile->image))
-                <img src="{{ asset('storage/' . $profile->image) }}" alt="プロフィール画像" class="avatar-img">
+                <img src="{{ asset('storage/' . $profile->image) }}" alt="" class="avatar-img">
             @else
-                <img src="{{ asset('images/default-avatar.png') }}" alt="デフォルト画像" class="avatar-img">
+                <img src="{{ asset('images/default-avatar.png') }}" alt="" class="avatar-img">
             @endif
         </div>
 
@@ -46,7 +46,6 @@
         {{-- 商品一覧 --}}
         <div class="item-list">
             @php
-                // sell タブなら Product モデル、buy タブなら Item モデル
                 $items = $page === 'sell' ? $soldItems : $purchasedItems;
             @endphp
 

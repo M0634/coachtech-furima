@@ -22,9 +22,12 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
 }
 
 .btn-submit {
+    width: 100%;            
     background-color: #e57373;
     color: #fff;
     padding: 12px;
@@ -32,6 +35,7 @@
     border-radius: 6px;
     cursor: pointer;
     transition: 0.2s;
+    font-size: 1rem;
 }
 
 .btn-submit:hover {
@@ -43,24 +47,77 @@
     font-size: 0.9rem;
 }
 
-/* 1400px～1540px の画面用レスポンシブ */
+/* ==============================
+   大画面（1400px～1540px）
+============================== */
 @media (min-width: 1400px) and (max-width: 1540px) {
 
     .address-edit-wrapper {
-        max-width: 520px;   /* 全体を少しだけ細く */
+        max-width: 520px;
         margin: 50px auto;
     }
 
     .address-form {
-        gap: 16px;          /* フォーム間の余白を縮める */
+        gap: 16px;
     }
 
     .form-group input {
-        padding: 8px;       /* 入力欄の高さを少し小さく */
+        padding: 8px;
+        font-size: 0.95rem;
     }
 
     .btn-submit {
-        padding: 10px;      /* ボタンも少し小さく */
+        padding: 10px;
         font-size: 0.95rem;
+    }
+}
+
+/* ==============================
+   タブレット（768px〜850px）
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+
+    .address-edit-wrapper {
+        max-width: 90%;
+        margin: 40px auto;
+        padding: 0 10px;
+    }
+
+    .address-form {
+        gap: 16px;
+    }
+
+    .form-group input {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+
+    .btn-submit {
+        padding: 10px;
+        font-size: 0.95rem;
+        width: 100%;
+    }
+}
+
+/* ==============================
+   スマホ（480px以下）
+============================== */
+@media (max-width: 480px) {
+
+    .address-edit-wrapper {
+        max-width: 95%;
+        margin: 30px auto;
+        padding: 0 5px;
+    }
+
+    .form-group input {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .btn-submit {
+        padding: 10px;
+        font-size: 0.9rem;
+        width: 100%;
     }
 }
